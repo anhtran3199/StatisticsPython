@@ -13,5 +13,8 @@ if __name__ == '__main__':
 
     score = data['DIEM_THI']
     print(score[0])
-    print(score[0].split("   "))
+    # print(score[0].split("   "))
+
+
+    # for i in range (0, data.size):
 
