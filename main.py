@@ -1,8 +1,17 @@
 import numpy as np
 import pandas as pd
 
+def readData(filePath):
+    return pd.read_csv(filePath)
+
 if __name__ == '__main__':
-    arr = [1, 3, 5, 67, 7, 9]
-    print(np.mean(arr))
-    data = pd.read_csv('data/THPT2017_HaNoi_A.csv')
-    print(data.to_string())
+    data = readData('data/THPT2017_HaNoi_1.csv')
+    # print(data.to_string())
+    # print(data.shape)
+    # print(data.columns)
+    # print(data.info())
+
+    score = data['DIEM_THI']
+    print(score[0])
+    print(score[0].split("   "))
+
