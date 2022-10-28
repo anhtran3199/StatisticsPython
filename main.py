@@ -1,20 +1,59 @@
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 
-def readData(filePath):
-    return pd.read_csv(filePath)
+def readData():
+    return pd.read_csv('data/diem_thi_thpt_2022.csv')
+
+def meanExample(data):
+    plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+             'lich_su', 'dia_li', 'gdcd'],
+            data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+                                                 'lich_su', 'dia_li', 'gdcd']].mean(),
+            width=0.6)
+    plt.gcf().set_size_inches(10, 8)
+    plt.show()
+
+def modeExample(data):
+    plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+             'lich_su', 'dia_li', 'gdcd'],
+            data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+                  'lich_su', 'dia_li', 'gdcd']].mode(),
+            width=0.6)
+    plt.gcf().set_size_inches(10, 8)
+    plt.show()
+
+def medianExample(data):
+    plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+             'lich_su', 'dia_li', 'gdcd'], data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+                                                 'lich_su', 'dia_li', 'gdcd']].median(), width=0.6)
+    plt.gcf().set_size_inches(10, 8)
+    plt.show()
+
+def histExample(data):
+    plt.hist(data[['toan']], bins=30, facecolor='blue', alpha=0.5)
+    # plt.gcf().set_size_inches(20, 8)
+    plt.show()
 
 if __name__ == '__main__':
-    data = readData('data/THPT2017_HaNoi_1.csv')
+    data = readData()
+    # meanExample(data)
+    # medianExample(data)
+    # modeExample(data)
+    histExample(data)
+    data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+                                                 'lich_su', 'dia_li', 'gdcd']].hist()
     # print(data.to_string())
     # print(data.shape)
     # print(data.columns)
     # print(data.info())
-
-    score = data['DIEM_THI']
-    print(score[0])
-    # print(score[0].split("   "))
-
-
-    # for i in range (0, data.size):
+    # print(data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+    #       'lich_su', 'dia_li', 'gdcd']].mean())
+    # plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+    #       'lich_su', 'dia_li', 'gdcd'], data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+    #       'lich_su', 'dia_li', 'gdcd']].mean(), width=0.6)
+    # plt.gcf().set_size_inches(10, 8)
+    # plt.show()
+    # data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
+    #       'lich_su', 'dia_li', 'gdcd']].mean().sort_values(ascending=False).plot(kind='bar')
 
