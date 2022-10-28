@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib as mpl
 from matplotlib import pyplot as plt
 
 def readData():
@@ -35,6 +36,7 @@ def histExample(data):
     # plt.gcf().set_size_inches(20, 8)
     plt.show()
 
+
 if __name__ == '__main__':
     data = readData()
     # meanExample(data)
@@ -43,17 +45,6 @@ if __name__ == '__main__':
     histExample(data)
     data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
                                                  'lich_su', 'dia_li', 'gdcd']].hist()
-    # print(data.to_string())
-    # print(data.shape)
-    # print(data.columns)
-    # print(data.info())
-    # print(data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-    #       'lich_su', 'dia_li', 'gdcd']].mean())
-    # plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-    #       'lich_su', 'dia_li', 'gdcd'], data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-    #       'lich_su', 'dia_li', 'gdcd']].mean(), width=0.6)
-    # plt.gcf().set_size_inches(10, 8)
-    # plt.show()
-    # data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-    #       'lich_su', 'dia_li', 'gdcd']].mean().sort_values(ascending=False).plot(kind='bar')
+
+
 
