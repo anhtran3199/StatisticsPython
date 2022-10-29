@@ -85,7 +85,7 @@ def compareHistogram(dataFinal):
 
 
 if __name__ == '__main__':
-    # preProcessData()
+    preProcessData()
     dataFinal = pd.read_csv('data/final_data.csv')
     dataFinal.head()
     initData(dataFinal)
