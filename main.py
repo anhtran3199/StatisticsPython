@@ -46,32 +46,37 @@ def preProcessData():
     # Sinh file data mới
     data.append(data_2020_2022).to_csv('data/final_data.csv', index=False)
 
+
 def initData(dataFinal):
     dataFinal.columns = ['SBD', 'Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa',
-                  'Sinh', 'Lich_su', 'Dia_ly', 'GDCD', 'Year', 'code', 'province']
+                         'Sinh', 'Lich_su', 'Dia_ly', 'GDCD', 'Year', 'code', 'province']
 
     dataFinal.drop_duplicates(inplace=True)
 
 
 def meanExample(data):
-    plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-             'lich_su', 'dia_li', 'gdcd'],
-            data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-                  'lich_su', 'dia_li', 'gdcd']].mean(),
+    plt.bar(['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD'],
+            data[['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD']].mean(),
             width=0.6)
     plt.gcf().set_size_inches(10, 8)
+    plt.ylim(0, 10)
     plt.show()
 
 
-def modeExample(data): # Điểm phổ biến nhất từng môn
+def modeExample(data):  # Điểm phổ biến nhất từng môn
     print(data.mode())
 
 
 def medianExample(data):  # Trung vị
-    plt.bar(['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-             'lich_su', 'dia_li', 'gdcd'], data[['toan', 'ngu_van', 'ngoai_ngu', 'vat_li', 'hoa_hoc', 'sinh_hoc',
-                                                 'lich_su', 'dia_li', 'gdcd']].median(), width=0.6)
+    plt.bar(['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD'],
+            data[['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD']].median(),
+            width=0.6)
     plt.gcf().set_size_inches(10, 8)
+    plt.ylim(0, 10)
+    arr = []
+    for i in range(0, 21):
+        arr.append(i / 2)
+    plt.yticks(arr)
     plt.show()
 
 
@@ -79,19 +84,20 @@ def histExample(data):  # Phổ điểm môn toán
     plt.hist(data[['toan']], bins=300, facecolor='blue', alpha=0.5)
     plt.show()
 
+
 def compareHistogram(dataFinal):
     sns.kdeplot(data=dataFinal, x='Toan', hue='Year', bw_adjust=2, palette=["C1", "C2", "C4"])
     plt.show()
 
 
 if __name__ == '__main__':
-    preProcessData()
+    # preProcessData()
     dataFinal = pd.read_csv('data/final_data.csv')
     dataFinal.head()
     initData(dataFinal)
-    compareHistogram(dataFinal)
+    # compareHistogram(dataFinal)
     # print(data.median())
-    # meanExample(data)
-    # medianExample(data)
-    # modeExample(data)
-    # histExample(data)
+    # meanExample(dataFinal)
+    medianExample(dataFinal)
+    # modeExample(dataFinal)
+    # histExample(dataFinal)
