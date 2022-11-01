@@ -64,8 +64,7 @@ def meanExample(data):
 
 
 def modeExample(data):  # Điểm phổ biến nhất từng môn
-    print(data.mode())
-
+    print(data[['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD']].mode())
 
 def medianExample(data):  # Trung vị
     plt.bar(['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD'],
@@ -77,27 +76,43 @@ def medianExample(data):  # Trung vị
     for i in range(0, 21):
         arr.append(i / 2)
     plt.yticks(arr)
+    plt.title('Median Example')
     plt.show()
 
 
-def histExample(data):  # Phổ điểm môn toán
-    plt.hist(data[['toan']], bins=300, facecolor='blue', alpha=0.5)
+def mathHistExample(data):  # Phổ điểm môn toán
+    plt.hist(data[['Toan']], bins=300, facecolor='blue', alpha=0.5)
+    plt.title('Math histogram example')
     plt.show()
 
+def histExample(data):
+    data[['Toan', 'Van', 'Ngoai_ngu', 'Ly', 'Hoa', 'Sinh', 'Lich_su', 'Dia_ly', 'GDCD']].hist(bins=80)
+    plt.gcf().set_size_inches(20, 8)
+    plt.title('Histogram example')
+    plt.show()
 
-def compareHistogram(dataFinal):
+def compareMathHistogram(dataFinal):
     sns.kdeplot(data=dataFinal, x='Toan', hue='Year', bw_adjust=2, palette=["C1", "C2", "C4"])
+    plt.title('Compare math score between 3 years')
     plt.show()
 
+def mathScoreGroupByProvince(dataFinal):
+    dataFinal.groupby('province')[['Toan']].mean().sort_values(ascending=False, by='Toan').plot(kind='bar')
+    plt.ylim(0, 10)
+    plt.gcf().set_size_inches(20, 8)
+    plt.title('Math score all provinces')
+    plt.show()
 
 if __name__ == '__main__':
     # preProcessData()
     dataFinal = pd.read_csv('data/final_data.csv')
     dataFinal.head()
     initData(dataFinal)
-    # compareHistogram(dataFinal)
-    # print(data.median())
+
+    # mathScoreGroupByProvince(dataFinal)
+    # compareMathHistogram(dataFinal)
     # meanExample(dataFinal)
-    medianExample(dataFinal)
-    # modeExample(dataFinal)
+    # medianExample(dataFinal)
+    modeExample(dataFinal)
+    # mathHistExample(dataFinal)
     # histExample(dataFinal)
